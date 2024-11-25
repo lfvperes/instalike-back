@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { listAllPosts, makeNewPost, imageUpload } from "../controllers/postsController.js";
+import { listAllPosts, makeNewPost, imageUpload, updateNewPost } from "../controllers/postsController.js";
 
 const upload = multer({dest: "./uploads"})
 
@@ -12,6 +12,8 @@ const routes = (app) => {
     app.get("/posts", listAllPosts);
     app.post("/posts", makeNewPost);
     app.post("/upload", upload.single("image"), imageUpload);
+
+    app.put("/upload/:id", updateNewPost);
 };
 
 export default routes;
